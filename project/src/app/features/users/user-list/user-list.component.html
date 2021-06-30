@@ -1,0 +1,36 @@
+<div class="container" style="margin-top: 70px;">
+    <h3>Users Available:</h3>
+    <button class="btn btn-primary m-1" (click)="addUser()">
+        Add User
+    </button>
+    <div class="row">        
+        <div class="col-sm-5">
+            <div class="card w-100" *ngFor="let user of users" (click)=selectUser(user)
+            [class.selected]="user.id === selectedUser?.id">
+                <div class="card-body" >
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img [src]="getAvatar(user)" [alt]="user.username" width="50px">
+                        </div>
+                        <div class="col-md-7">
+                            <h5 class="card-title" (click)="selectMode('details')">{{user.username ? user.username : user.email}}</h5>
+                            <p class="card-text">{{user.firstName}} {{user.lastName}} [{{getRoleName(user.role)}}]</p>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-sm btn-primary m-1" (click)="selectMode('edit')">
+                                Edit
+                            </button>
+                            <button class="btn btn-sm btn-danger m-1" (click)="deleteUser(user)">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+

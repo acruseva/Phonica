@@ -1,0 +1,40 @@
+<div *ngIf="mode === 'edit' || mode === 'create'">
+    <form [formGroup]="form" (ngSubmit)="submitProduct()">
+        <div class="form-group">
+            <div *ngIf="product?.id">
+            <label for="id">ID</label>
+            <input class="form-control" type="text" id="id" name="id" placeholder="User Id" formControlName="id"
+                readonly>
+            </div>
+
+            <label for="username">Product name</label>
+            <input class="form-control" name="name" placeholder="Product name" formControlName="name">
+            <small *ngIf="formErrors.name" class="form-text text-muted">{{ formErrors.name }}</small>
+
+            <label for="email">Price</label>
+            <input class="form-control" name="price" type="number" matInput placeholder="Product price" formControlName="price">
+            <small *ngIf="formErrors.price" class="form-text text-muted">{{ formErrors.price }}</small>
+
+
+            <label for="email">Product description</label>
+            <input class="form-control" name="description" matInput placeholder="Product description" formControlName="description">
+            <small *ngIf="formErrors.description" class="form-text text-muted">{{ formErrors.description }}</small>
+
+            <label for="image">Product image</label>
+            <div class="col-4 col-md-2">                
+                  <img
+                    [src]="this.form.value.image"
+                    alt="productImage"
+                    class="img-fluid img-thumbnail"
+                  />                
+              </div>          
+            <input type="file" (change)="handleUpload($event)">
+            <small *ngIf="formErrors.image" class="form-text text-muted">{{ formErrors.image }}</small>
+
+
+        </div>
+    </form>
+    <button class="btn btn-primary m-1" (click)="submitProduct()">Submit</button>
+    <button type="button" class="btn btn-warning m-1" (click)="reset()">Reset</button>
+    <button type="button" class="btn btn-secondary m-1" (click)="cancelProduct()">Cancel</button>
+</div>

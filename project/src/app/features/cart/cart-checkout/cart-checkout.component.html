@@ -1,0 +1,63 @@
+<section id="cart">
+    <div class="container-fluid p-5">
+        <h3 *ngIf="!cartItems.length" class="display-2 text-center mt-5">
+            Your cart is Empty, add products to checkout
+        </h3>
+        <div *ngIf="cartItems.length">
+            <div class="row">
+                <div class="offset-1 col-md-10">
+                    <p class="lead font-weight-bold">Order checkout</p>
+                    <app-cart-items-list [cartItems]="cartItems"></app-cart-items-list>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-1 col-md-10">
+                    <div class="card-body">
+                        <form [formGroup]="orderForm" (ngSubmit)="order()">
+                            <div class="form-group">
+                                <label>Full name</label>
+                                <input type="text" name="name" formControlName="name" class="form-control" />
+                                <small *ngIf="formErrors.name" class="form-text text-muted text-danger">{{ formErrors.name }}</small>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="text" name="phone" formControlName="phone" class="form-control" />
+                                <small *ngIf="formErrors.phone" class="form-text text-muted text-danger">{{ formErrors.phone }}</small>
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input type="text" name="address" formControlName="address" class="form-control" />
+                                <small *ngIf="formErrors.address" class="form-text text-muted text-danger">{{ formErrors.address }}</small>
+                            </div>
+                           
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <input type="text" name="city"  formControlName="city" class="form-control" />
+                                        <small *ngIf="formErrors.city" class="form-text text-muted text-danger">{{ formErrors.city }}</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Postal Code</label>
+                                        <input type="text" name="postCode" formControlName="postCode" class="form-control" />
+                                        <small *ngIf="formErrors.postCode" class="form-text text-muted text-danger">{{ formErrors.postCode }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input type="text" name="country" formControlName="country" class="form-control" />
+                                <small *ngIf="formErrors.country" class="form-text text-muted text-danger">{{ formErrors.country }}</small>
+                            </div>
+                            <button type="button" class="btn btn-danger" (click)="order()">
+                                Make an order
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

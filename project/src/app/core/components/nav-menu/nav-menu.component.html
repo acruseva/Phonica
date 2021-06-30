@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">PhoneShop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a [routerLink]="'login'" class="nav-link link d-flex align-items-center flex-column">
+            Login
+          </a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a [routerLink]="'register'" class="nav-link link d-flex align-items-center flex-column">
+            Register
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+        <li *ngIf="isAdmin" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a [routerLink]="'users'" class="nav-link link d-flex align-items-center flex-column">
+            Users
+          </a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a [routerLink]="'products'" class="nav-link link d-flex align-items-center flex-column">
+            Products
+          </a>
+        </li>
+        <li *ngIf="isAdmin" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a [routerLink]="'orders/all'" class="nav-link link d-flex align-items-center flex-column">
+            All Orders
+          </a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a [routerLink]="'orders'" class="nav-link link d-flex align-items-center flex-column">
+            My Orders
+          </a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a [routerLink]="'cart'" class="nav-link link d-flex align-items-center flex-column">
+            Cart ({{ cartItems || 0 }})
+          </a>
+        </li>
+        <li *ngIf="userId" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a routerLink="profile/edit/{{userId}}" class="nav-link link d-flex align-items-center flex-column">
+            Profile Edit
+          </a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a [routerLink]="'login'" (click)="logout()" class="nav-link link d-flex align-items-center flex-column">
+            Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

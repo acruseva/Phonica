@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div *ngIf="mode === 'details'">
+            <div class="card w-100">
+                <div class="card-body">
+                    <img [src]="getAvatar()" [alt]="user?.username" width="100%">
+                    <h5 class="card-title">{{user?.username ? user?.username : user?.email}}</h5>
+                    <p class="card-text">{{user?.firstName}} {{user?.lastName}} [{{getRoleName(user?.role)}}]</p>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="mode === 'register' || mode === 'edit' || mode === 'create'">
+            <form [formGroup]="userForm" (ngSubmit)="submitUser()">
+                <div class="form-group">
+                    <label for="id">ID</label>
+                    <input class="form-control" type="text" id="id" name="id" placeholder="User Id" formControlName="id"
+                        readonly>
+
+                    <label for="username">Username</label>
+                    <input class="form-control" type="text" id="username" name="username" placeholder="Username"
+                        formControlName="username">
+                    <small *ngIf="formErrors.username" class="form-text text-muted">{{ formErrors.username }}</small>
+
+                    <label for="email">Email</label>
+                    <input class="form-control" type="email" id="email" name="email" formControlName="email"
+                        placeholder="E-mail" required>
+                    <small *ngIf="formErrors.email" class="form-text text-muted">{{ formErrors.email }}</small>
+
+
+                    <label for="email">Password</label>
+                    <input class="form-control" type="password" id="password" name="password" formControlName="password"
+                        placeholder="Password" required>
+                    <small *ngIf="formErrors.password" class="form-text text-muted">{{ formErrors.password }}</small>
+
+
+                    <label for="email">First Name</label>
+                    <input class="form-control" type="text" id="firstName" name="firstName" formControlName="firstName"
+                        placeholder="First name" required>
+                    <small *ngIf="formErrors.firstName" class="form-text text-muted">{{ formErrors.firstName }}</small>
+
+
+                    <label for="email">Last Name</label>
+                    <input class="form-control" type="text" id="lastName" name="lastName" formControlName="lastName"
+                        placeholder="Last name" required>
+                    <small *ngIf="formErrors.lastName" class="form-text text-muted">{{ formErrors.lastName }}</small>
+
+
+                    <label for="avatar">User avatar</label>
+                    <div class="col-4 col-md-2">
+                        <img [src]="this.userForm.value.avatar ? this.userForm.value.avatar : 'assets/images/noimage.png'" alt="avatar" class="img-fluid img-thumbnail" />
+                    </div>
+                    <input type="file" (change)="handleUpload($event)">
+                    <small *ngIf="formErrors.avatar" class="form-text text-muted">{{ formErrors.avatar }}</small>
+
+
+
+                    <div class="form-group" *ngIf="isAdmin">
+                        <label for="role">Role</label>
+                        <select class="form-control" laceholder="Role" id="role" name="role" formControlName="role"
+                            required>
+                            <option *ngFor="let role of roles" [value]="role.key">{{ role.value }}</option>
+                        </select>
+                        <small *ngIf="formErrors.role" class="form-text text-muted">{{ formErrors.role }}</small>
+                    </div>
+
+
+                </div>
+            </form>
+            <button class="btn btn-primary m-1" (click)="submitUser()"
+                >Submit</button>
+            <button type="button" class="btn btn-warning m-1" (click)="resetUser()">Reset</button>
+            <button type="button" class="btn btn-secondary m-1" (click)="cancelUser()">Cancel</button>
+        </div>
+    </div>
+</div>

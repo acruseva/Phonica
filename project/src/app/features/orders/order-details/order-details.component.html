@@ -1,0 +1,33 @@
+<section id="cart">
+    <div class="container-fluid p-5">
+        <h3 *ngIf="!order" class="display-2 text-center mt-5">
+            Not Found
+        </h3>
+        <div *ngIf="order">
+            <div class="row">
+                <div class="offset-1 col-md-10">
+                    <p class="lead font-weight-bold">Order details #{{ order.id }}</p>
+                    <app-cart-items-list [cartItems]="order.products"></app-cart-items-list>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-1 col-md-10">
+                    <p class="lead font-weight-bold">Delivery details</p>                    
+                </div>
+                <div class="offset-1 col-md-10">
+                    <div class="card-body">
+
+                        <div>{{ order.name }}</div>
+
+                        <div>{{ order.phone }}</div>
+
+                        <div>{{ order.address }}, {{ order.city }}, {{ order.postCode }}, {{ order.country }}</div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

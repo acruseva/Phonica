@@ -1,0 +1,28 @@
+<div class="container mt-4">
+    <h2>Products Available</h2>
+    <button *ngIf="isAdmin" type="button" class="btn btn-warning m-3" (click)="onAddProduct()">     
+      Add Product
+    </button>
+    <div class="row">
+        <div class="col-md-6 col-lg-4" *ngFor="let product of products">
+            <div class="card shadow-sm border-light mb-4">
+                <a [routerLink]="['/products', product.id]" class="position-relative">
+                    <img [src]="product.image" [alt]="product.name" class="card-img-top" alt="image"> </a>
+                <div class="card-body">
+                    <a [routerLink]="['/products', product.id]">
+                        <h5 class="font-weight-normal">{{product.name}}</h5>
+                    </a>
+                    <div class="post-meta"><span class="small lh-120">{{product.description}}</span></div>
+                   
+                    <div class="d-flex justify-content-between">
+                        <div class="col pl-0 pt-3"> <span class="h5 text-dark font-weight-bold">{{product.price | currency:'USD':true:'1.2-2'}}</span></div>
+                        <div class="link" (click)="addToCart(product)">
+                            <div class="col"><fa-icon size="lg"[icon]="['fas', 'cart-plus']"></fa-icon></div> 
+                        </div>
+                       <!-- <div class="col pr-0"><span class="text-muted font-small d-block mb-2">Sq.Ft</span> <span class="h5 text-dark font-weight-bold">1500</span></div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
