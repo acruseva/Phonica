@@ -6,11 +6,13 @@ import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { RouterModule } from '@angular/router';
 import { MessageComponent } from './components/message/message.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     NavMenuComponent,
-    MessageComponent
+    MessageComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
