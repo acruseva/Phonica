@@ -22,10 +22,6 @@ export class ProductsService {
     return this.http.get<Product>(`${environment.baseApiUrl}/products/${id}`);
   }
 
-  findByEmail(email: string): Observable<Product | undefined> {
-    return undefined
-  }
-
   create(entity: Product): Observable<Product | undefined> {
     return this.http.post<Product>(`${environment.baseApiUrl}/products`, entity);
   }
